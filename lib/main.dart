@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import './transactions.dart';
+import './model/transactions.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -23,6 +23,17 @@ class MyHomePage extends StatelessWidget {
     Transactions(
         id: 2, title: 'Ankle socks', amount: 21.99, date: DateTime.now())
   ];
+
+  //different methods of registering user input
+  //method-1
+  /*
+  String titleInput;
+  String amountInput;
+  */
+
+  //method-2
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -50,18 +61,31 @@ class MyHomePage extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.all(10),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
                     TextField(
                       decoration: InputDecoration(labelText: 'Title'),
+                      /*method-1 to change user input
+                      onChanged: (val) {
+                        titleInput = val;
+                      }*/
+                      controller: titleController,
                     ),
                     TextField(
                       decoration: InputDecoration(labelText: 'Amount'),
+                      /*method-1 to change user input
+                      onChanged: (val) => amountInput = val
+                      */
+                      controller: amountController,
                     ),
                     FlatButton(
                       child: Text('Add Transaction'),
-                      onPressed: () {},
-                      color: Colors.green,
-                      textColor: Colors.black,
+                      onPressed: () {
+                        print(titleController.text);
+                        print(amountController.text);
+                      },
+                      color: Colors.white30,
+                      textColor: Colors.purple,
                     )
                   ],
                 ),
